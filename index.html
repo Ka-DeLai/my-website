@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ломбард займ</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Шапка */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #095151;
+            padding: 10px;
+            z-index: 1000;
+            border-bottom: 1px solid gray;
+        }
+        
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-top img {
+            height: 40px;
+        }
+        
+        .contacts {
+            margin-left: auto;
+            margin-right: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        
+        .account-link {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        
+        nav {
+            text-align: center;
+            margin-top: 5px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        
+        /* Основной контент */
+        .main-content {
+            margin-top: 100px;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #095151;
+            text-align: center;
+        }
+        
+        /* Калькулятор */
+        .calculator {
+            max-width: 660px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .calculator h2 {
+            color: #095151;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #095151;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        
+        .calculate-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #095151;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #0a6363;
+        }
+        
+        /* Баннеры */
+        .banners {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            flex-wrap: wrap;
+        }
+        
+        .banner {
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            width: 300px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-low {
+            background: #095151;
+        }
+        
+        .banner-gold {
+            background: #ffd700;
+            color: #333;
+        }
+        
+        .banner-link {
+            text-decoration: none;
+        }
+
+        .banner-icon {
+            width: 80px;
+            height: auto;
+            margin-top: 10px;
+        }
+        
+        /* Баннер приложения */
+        .app-banner {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 660px;
+            border: 1px solid #ddd;
+        }
+
+        .app-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .app-text h3 {
+            color: #095151;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .app-text p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .app-badges {
+            display: flex;
+            gap: 10px;
+        }
+
+        .app-store, .google-play {
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+        }
+
+        .app-store {
+            background: #000;
+        }
+
+        .google-play {
+            background: #095151;
+        }
+
+        .app-image img {
+            max-width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <img src="assets/icons/лого1.png" alt="Логотип">
+            <span class="contacts">Контакты +7 (999) 123-45-67</span>
+            <a href="Registration.html" class="account-link">Личный кабинет</a>
+        </div>
+        
+        <nav>
+            <a href="About.html">О компании</a>
+            <a href="Client.html">Клиентам</a>
+            <a href="#sales">Акции</a>
+            <a href="https://yandex.ru/maps/213/moscow/search/ломбард/">Адреса магазинов</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="calculator">
+            <h2>Калькулятор займа</h2>
+            <div class="form-group">
+                <label for="amount">Желаемая сумма</label>
+                <input type="number" id="amount" placeholder="Введите сумму в рублях">
+            </div>
+            <div class="form-group">
+                <label for="term">Желаемый срок займа</label>
+                <input type="number" id="term" placeholder="Введите срок в месяцах">
+            </div>
+            <button class="calculate-btn">Рассчитать займ</button>
+        </div>
+        
+        <div class="banners">
+            <a href="Client.html" class="banner-link">
+                <div class="banner banner-low">
+                    Низкий процент новым клиентам
+                    <img src="assets/icons/процетт.png" alt="Процент" class="banner-icon">
+                </div>
+            </a>
+            <a href="#sales" class="banner-link">
+                <div class="banner banner-gold">
+                    Распродажа золота
+                    <img src="assets/icons/голд.png" alt="Золото" class="banner-icon">
+                </div>
+            </a>
+        </div>
+        
+        <div class="app-banner">
+            <div class="app-content">
+                <div class="app-text">
+                    <h3>Теперь мы в приложении!</h3>
+                    <p>Скачай и получай займы ещё быстрее</p>
+                    <div class="app-badges">
+                        <a href="#" class="app-store">App Store</a>
+                        <a href="#" class="google-play">Google Play</a>
+                    </div>
+                </div>
+                <div class="app-image">
+                    <img src="assets/images/приложение.jpg" alt="Наше приложение">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+

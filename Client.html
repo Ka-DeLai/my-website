@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Клиентам - Ломбард займ</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        /* Шапка */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #095151;
+            padding: 10px;
+            z-index: 1000;
+            border-bottom: 1px solid gray;
+        }
+        
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-top img {
+            height: 40px;
+        }
+        
+        .contacts {
+            margin-left: auto;
+            margin-right: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        
+        .account-link {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        
+        nav {
+            text-align: center;
+            margin-top: 5px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        
+        /* Основной контент */
+        .main-content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        h1 {
+            color: #095151;
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 100px;
+        }
+        
+        /* Категории товаров */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .category {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .category-title {
+            color: #095151;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .items-list {
+            flex-grow: 1;
+        }
+        
+        .item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+        }
+        
+        .item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Галерея фото */
+        .photo-gallery {
+            margin-top: 50px;
+        }
+        
+        .gallery-title {
+            color: #095151;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-caption {
+            padding: 15px;
+            text-align: center;
+            color: #095151;
+            font-weight: bold;
+        }
+        
+        /* Информационный блок */
+        .info-block {
+            background: #095151;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
+            text-align: center;
+        }
+        
+        .info-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .info-text {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+        
+        /* Баннер обратной связи внизу страницы */
+        .feedback-banner-bottom {
+            width: 100%;
+            background: #095151;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .feedback-link-bottom {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #0a6363;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        
+        .feedback-link-bottom:hover {
+            background-color: #0b7474;
+        }
+        /* Слайдер */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .slider-prev,
+        .slider-next {
+            background: rgba(9, 81, 81, 0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            pointer-events: all;
+            transition: background-color 0.3s;
+        }
+
+        .slider-prev:hover,
+        .slider-next:hover {
+            background: rgba(9, 81, 81, 0.9);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-dot.active {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <img src="assets/icons/лого1.png" alt="Логотип">
+            <span class="contacts">Контакты +7 (999) 123-45-67</span>
+            <a href="Registration.html" class="account-link">Личный кабинет</a>
+        </div>
+        
+        <nav>
+            <a href="index.html">Главная страница</a>
+            <a href="Client.html" class="active">Клиентам</a>
+            <a href="About.html">О компании</a>
+            <a href="#sales">Акции</a>
+            <a href="https://yandex.ru/maps/213/moscow/search/ломбард/">Адреса магазинов</a>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <h1>Что принимаем в ломбарде</h1>
+        
+        <div class="categories">
+            <!-- Ювелирные изделия -->
+            <div class="category">
+                <div class="category-header">
+                    <img src="assets/images/ювелирные.jpg" alt="Ювелирные изделия" class="category-icon">
+                    <h3 class="category-title">Ювелирные изделия</h3>
+                </div>
+                <div class="items-list">
+                    <div class="item">Золотые кольца, серьги, цепочки</div>
+                    <div class="item">Серебряные украшения</div>
+                    <div class="item">Изделия с драгоценными камнями</div>
+                    <div class="item">Часы швейцарские и европейские</div>
+                    <div class="item">Антикварные ювелирные изделия</div>
+                </div>
+            </div>
+            
+            <!-- Электроника -->
+            <div class="category">
+                <div class="category-header">
+                    <img src="assets/images/электроника.jpg" alt="Электроника" class="category-icon">
+                    <h3 class="category-title">Электроника</h3>
+                </div>
+                <div class="items-list">
+                    <div class="item">Смартфоны и планшеты</div>
+                    <div class="item">Ноутбуки и компьютеры</div>
+                    <div class="item">Фотоаппараты и объективы</div>
+                    <div class="item">Игровые консоли</div>
+                    <div class="item">Аудиотехника</div>
+                </div>
+            </div>
+            
+            <!-- Бытовая техника -->
+            <div class="category">
+                <div class="category-header">
+                    <img src="assets/images/техника.png" alt="Бытовая техника" class="category-icon">
+                    <h3 class="category-title">Бытовая техника</h3>
+                </div>
+                <div class="items-list">
+                    <div class="item">Телевизоры и мониторы</div>
+                    <div class="item">Холодильники и морозильники</div>
+                    <div class="item">Стиральные машины</div>
+                    <div class="item">Климатическая техника</div>
+                    <div class="item">Кухонная техника</div>
+                </div>
+            </div>
+            
+            <!-- Антиквариат -->
+            <div class="category">
+                <div class="category-header">
+                    <img src="assets/images/антиквариат.jpg" alt="Антиквариат" class="category-icon">
+                    <h3 class="category-title">Антиквариат и искусство</h3>
+                </div>
+                <div class="items-list">
+                    <div class="item">Картины и иконы</div>
+                    <div class="item">Старинные книги</div>
+                    <div class="item">Фарфор и керамика</div>
+                    <div class="item">Серебряные столовые приборы</div>
+                    <div class="item">Предметы коллекционирования</div>
+                </div>
+            </div>
+            
+            <!-- Музыкальные инструменты -->
+            <div class="category">
+                <div class="category-header">
+                    <img src="assets/images/музыка.jpg" alt="Музыкальные инструменты" class="category-icon">
+                    <h3 class="category-title">Музыкальные инструменты</h3>
+                </div>
+                <div class="items-list">
+                    <div class="item">Гитары акустические и электрические</div>
+                    <div class="item">Клавишные инструменты</div>
+                    <div class="item">Ударные установки</div>
+                    <div class="item">Духовые инструменты</div>
+                    <div class="item">Профессиональное оборудование</div>
+                </div>
+            </div>
+            
+            <!-- Другие ценности -->
+            <div class="category">
+                <div class="category-header">
+                    <img src="assets/images/другое.png" alt="Другие ценности" class="category-icon">
+                    <h3 class="category-title">Другие ценности</h3>
+                </div>
+                <div class="items-list">
+                    <div class="item">Монеты и банкноты</div>
+                    <div class="item">Меха и кожаные изделия</div>
+                    <div class="item">Спортивный инвентарь</div>
+                    <div class="item">Инструменты</div>
+                    <div class="item">Другие ликвидные товары</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Галерея примеров -->
+        <div class="photo-gallery">
+            <h2 class="gallery-title">Примеры принимаемых вещей</h2>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item">
+                    <div class="slider-container">
+                        <div class="slider">
+                            <div class="slide active">
+                                <img src="assets/images/пример1.jpg" alt="Золотые украшения" class="gallery-img">
+                            </div>
+                            <div class="slide">
+                                <img src="assets/images/пример1.1.jpg" alt="Золотые украшения вариант 1" class="gallery-img">
+                            </div>
+                            <div class="slide">
+                                <img src="assets/images/пример1.2.jpg" alt="Золотые украшения вариант 2" class="gallery-img">
+                            </div>
+                        </div>
+                        <div class="slider-controls">
+                            <button class="slider-prev">‹</button>
+                            <button class="slider-next">›</button>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="gallery-caption">Золотые украшения</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/images/пример2.jpg" alt="Швейцарские часы" class="gallery-img">
+                    <div class="gallery-caption">Швейцарские часы</div>
+                </div>
+                                
+                <div class="gallery-item">
+                    <div class="slider-container">
+                        <div class="slider">
+                            <div class="slide active">
+                                <img src="assets/images/пример3.jpg" alt="Электроника" class="gallery-img">
+                            </div>
+                            <div class="slide">
+                                <img src="assets/images/пример3.1.jpg" alt="Современная электроника вариант 1" class="gallery-img">
+                            </div>
+                            <div class="slide">
+                                <img src="assets/images/пример3.2.jpg" alt="Современная электроника вариант 2" class="gallery-img">
+                            </div>
+                        </div>
+                        <div class="slider-controls">
+                            <button class="slider-prev">‹</button>
+                            <button class="slider-next">›</button>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="gallery-caption">Современная электроника</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="assets/images/пример4.jpg" alt="Антиквариат" class="gallery-img">
+                    <div class="gallery-caption">Антикварные предметы</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Информационный блок -->
+        <div class="info-block">
+            <h3 class="info-title">Условия приема</h3>
+            <p class="info-text">
+                • Вещи должны быть в рабочем состоянии и хорошем внешнем виде<br>
+                • При себе необходимо иметь паспорт<br>
+                • Оценка производится бесплатно в вашем присутствии<br>
+                • Выдаем займы до 90% от стоимости залога<br>
+                • Срок хранения - от 30 до 180 дней
+            </p>
+        </div>
+    </div>
+    
+    <!-- Баннер обратной связи внизу страницы -->
+    <div class="feedback-banner-bottom">
+        <a href="Feedback.html" class="feedback-link-bottom">Обратная связь</a>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
